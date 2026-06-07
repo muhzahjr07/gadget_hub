@@ -1,0 +1,98 @@
+name: Build and Release React & .NET Application
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-frontend:
+    name: Build React Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Zip frontend build
+        run: |
+          cd dist
+          zip -r ../gadget_hub_frontend.zip .
+
+      - name: Upload frontend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gadget_hub_frontend
+          path: gadget_hub_frontend.zip
+
+  build-backend:
+    name: Build .NET Backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore backend/TheGadgetHub.API.csproj
+
+      - name: Publish API
+        run: dotnet publish backend/TheGadgetHub.API.csproj -c Release -o publish
+
+      - name: Zip backend build
+        run: |
+          cd publish
+          zip -r ../gadget_hub_backend.zip .
+
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gadget_hub_backend
+          path: gadget_hub_backend.zip
+
+  release:
+    name: Create GitHub Release
+    needs: [build-frontend, build-backend]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: gadget_hub_frontend
+
+      - name: Download backend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: gadget_hub_backend
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            gadget_hub_frontend.zip
+            gadget_hub_backend.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
