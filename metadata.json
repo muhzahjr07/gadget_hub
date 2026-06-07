@@ -1,0 +1,8 @@
+{
+  "name": "The Gadget Hub - SOC Solution",
+  "description": "A Service Oriented Computing (SOC) based gadget retail platform that orchestrates real-time quotations from multiple distributors to provide the best value to customers.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

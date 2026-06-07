@@ -1,0 +1,175 @@
+{
+    "info": {
+        "_postman_id": "b8a9c2d1-4e7a-4c8b-9e3d-0d8f7b5a1c2e",
+        "name": "The Gadget Hub SOC Solution",
+        "description": "API Test Collection for SOC Assessment",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "TC-01: Get Quotations (Valid)",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "[\r\n    {\r\n        \"productId\": \"gad-001\",\r\n        \"quantity\": 1\r\n    }\r\n]",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/api/Order/request-quotes",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "Order",
+                        "request-quotes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "TC-02: Get Quotations (Invalid ID)",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "[\r\n    {\r\n        \"productId\": \"invalid-999\",\r\n        \"quantity\": 1\r\n    }\r\n]",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/api/Order/request-quotes",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "Order",
+                        "request-quotes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "TC-03: Get Quotations (Zero Qty)",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "[\r\n    {\r\n        \"productId\": \"gad-001\",\r\n        \"quantity\": 0\r\n    }\r\n]",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/api/Order/request-quotes",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "Order",
+                        "request-quotes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "TC-04: Place Order (Valid)",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "[\r\n    {\r\n        \"productId\": \"gad-001\",\r\n        \"quantity\": 1\r\n    }\r\n]",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/api/Order/place-order",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "Order",
+                        "place-order"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "TC-05: Place Order (Missing Fields)",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "[\r\n    {\r\n        \"productId\": \"\",\r\n        \"quantity\": 1\r\n    }\r\n]",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/api/Order/place-order",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "Order",
+                        "place-order"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "TC-06: Health Check",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/Distributor",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "Distributor"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:5111",
+            "type": "string"
+        }
+    ]
+}
