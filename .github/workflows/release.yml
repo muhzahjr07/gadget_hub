@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  packages: write
 
 jobs:
   build-frontend:
@@ -40,6 +41,31 @@ jobs:
           name: gadget_hub_frontend
           path: gadget_hub_frontend.zip
 
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for Frontend Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}-frontend
+          tags: |
+            type=semver,pattern={{version}}
+            type=raw,value=latest
+
+      - name: Build and Push Frontend Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.frontend
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
   build-backend:
     name: Build .NET Backend
     runs-on: ubuntu-latest
@@ -69,6 +95,38 @@ jobs:
         with:
           name: gadget_hub_backend
           path: gadget_hub_backend.zip
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for Backend Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}-backend
+          tags: |
+            type=semver,pattern={{version}}
+            type=raw,value=latest
+
+      - name: Build and Push Backend Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.backend
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Pack NuGet Package
+        run: dotnet pack backend/TheGadgetHub.API.csproj -c Release -o out
+
+      - name: Push NuGet Package to GitHub Packages
+        run: |
+          dotnet nuget push out/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --skip-duplicate
 
   release:
     name: Create GitHub Release
