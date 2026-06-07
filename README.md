@@ -47,5 +47,13 @@ npm run dev
 #### 3. Stop All Services (Quick Script)
 You can run the [restart_app.ps1](restart_app.ps1) script in PowerShell to quickly clean up Node/dotnet processes and rebuild local ports.
 
+## 📷 Screenshots
+
+<!-- Add your screenshots here, e.g. ![Home Page](screenshots/home.png) -->
+_Placeholders for application screenshots:_
+* **Home Page**: ![Home Page](screenshots/home.png)
+* **Product Catalog**: ![Product Catalog](screenshots/catalog.png)
+* **Admin Dashboard**: ![Admin Dashboard](screenshots/admin_dashboard.png)
+
 ## 📄 License
 This project is licensed under the [MIT License](LICENSE).

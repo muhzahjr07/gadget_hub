@@ -42,9 +42,9 @@ describe('QuotationSimulator', () => {
 
     // Check for distributor details
     expect(screen.getByText('TechWorld')).toBeInTheDocument();
-    expect(screen.getByText('Price: $280')).toBeInTheDocument();
+    expect(screen.getByText('Price: Rs. 280')).toBeInTheDocument();
 
     expect(screen.getByText('ElectroCom')).toBeInTheDocument();
-    expect(screen.getByText('Price: $275')).toBeInTheDocument();
+    expect(screen.getByText('Price: Rs. 275')).toBeInTheDocument();
   });
 });
