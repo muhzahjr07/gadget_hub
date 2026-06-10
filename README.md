@@ -23,6 +23,7 @@ The Gadget Hub is a full-stack, enterprise-grade e-commerce application designed
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 * **Node.js** (v18 or higher)
 * **.NET SDK** (v8.0 or higher)
 
@@ -31,34 +32,40 @@ The Gadget Hub is a full-stack, enterprise-grade e-commerce application designed
 You can run the full application using the PowerShell scripts or manual terminal commands:
 
 #### 1. Running the Backend
+
 Navigate to the `backend` folder and run the server:
+
 ```bash
 cd backend
 dotnet run
 ```
 
 #### 2. Running the Frontend
+
 Install local npm dependencies and launch the dev environment:
+
 ```bash
 npm install
 npm run dev
 ```
 
 #### 3. Stop All Services (Quick Script)
+
 You can run the [restart_app.ps1](restart_app.ps1) script in PowerShell to quickly clean up Node/dotnet processes and rebuild local ports.
 
 ## 📷 Screenshots
 
 ### Web Interface Gallery
 
-| | |
-|:---:|:---:|
-| **Product Catalog** | **Shopping Cart** |
-| ![Product Catalog](screenshots/image%201.png) | ![Shopping Cart](screenshots/image%202.png) |
-| **Orchestrator Simulator** | **Best Price Analysis** |
-| ![Orchestrator Simulator](screenshots/image%203.png) | ![Best Price Analysis](screenshots/image%204.png) |
-| **Order History & Invoices** | **Testing & System Theory** |
-| ![Order History](screenshots/image%205.png) | ![Testing & System Theory](screenshots/image%206.png) |
+|                                                    |                                                    |
+| :------------------------------------------------: | :-------------------------------------------------: |
+|            **Main Page / Banner**            |               **Shopping Cart**               |
+|    ![Product Catalog](screenshots/image%201.png)    |      ![Shopping Cart](screenshots/image%202.png)      |
+|          **Orchestrator Simulator**          |               **Order History**               |
+| ![Orchestrator Simulator](screenshots/image%203.png) |   ![Best Price Analysis](screenshots/image%204.png)   |
+|            **System Diagnostic**            |          **Testing & System Theory**          |
+|     ![Order History](screenshots/image%205.png)     | ![Testing & System Theory](screenshots/image%206.png) |
 
 ## 📄 License
+
 This project is licensed under the [MIT License](LICENSE).
