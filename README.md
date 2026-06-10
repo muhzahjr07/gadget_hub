@@ -49,11 +49,16 @@ You can run the [restart_app.ps1](restart_app.ps1) script in PowerShell to quick
 
 ## 📷 Screenshots
 
-<!-- Add your screenshots here, e.g. ![Home Page](screenshots/home.png) -->
-_Placeholders for application screenshots:_
-* **Home Page**: ![Home Page](screenshots/home.png)
-* **Product Catalog**: ![Product Catalog](screenshots/catalog.png)
-* **Admin Dashboard**: ![Admin Dashboard](screenshots/admin_dashboard.png)
+### Web Interface Gallery
+
+| | |
+|:---:|:---:|
+| **Product Catalog** | **Shopping Cart** |
+| ![Product Catalog](screenshots/image%201.png) | ![Shopping Cart](screenshots/image%202.png) |
+| **Orchestrator Simulator** | **Best Price Analysis** |
+| ![Orchestrator Simulator](screenshots/image%203.png) | ![Best Price Analysis](screenshots/image%204.png) |
+| **Order History & Invoices** | **Testing & System Theory** |
+| ![Order History](screenshots/image%205.png) | ![Testing & System Theory](screenshots/image%206.png) |
 
 ## 📄 License
 This project is licensed under the [MIT License](LICENSE).
